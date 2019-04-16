@@ -10,7 +10,7 @@ Raw data should be in a txt file starting with genome and ending with .txt
 
     Eg: genome_Michael_OConnor_v4_Full_20190408081640.txt
 
-Program will look in current director for all files matching this pattern and
+Program will look in current directory for all files matching this pattern and
 then prompt user to select a specific file for processing
 
 Program also compares raw genome data with data from the FoundMyFitness comprehensive
@@ -19,8 +19,6 @@ report and provides a summary of notable matches.
 ## Sample Output
 
     Opening: genome_Michael_OConnor_v4_Full_20190408081640.txt
-
-    Imported total of 601886 SNPs...
 
     Processing 601886 SNPs sorted by Chromosome
      1:..............................................
@@ -45,7 +43,7 @@ report and provides a summary of notable matches.
     20:...............
     21:........
     22:..........
-    XY:.....................
+    X?:.....................
     MT:........
 
     Detected: 24 chromosomes, 601886 positions, 20 genotypes
@@ -89,7 +87,7 @@ report and provides a summary of notable matches.
     Chromosome: 10 = 29211
     Chromosome: 12 = 28451
     Chromosome: 9  = 26586
-    Chromosome: XY = 21780
+    Chromosome: X? = 21780
     Chromosome: 13 = 21679
     Chromosome: 16 = 19200
     Chromosome: 17 = 18743
@@ -107,9 +105,6 @@ report and provides a summary of notable matches.
     MT rs1801131  GT:  AA  MTHFR      Risk for altered folate metabolism and hyperhomocysteinemia
        See: https://www.snpedia.com/index.php/rs1801131
 
-    MT rs1801133  GG:  TT  MTHFR      Risk for altered folate metabolism and hyperhomocysteinemia
-       See: https://www.snpedia.com/index.php/rs1801133
-
     MT rs1061170  CT:  CT  CFH        Normal lifespan; slightly increased risk for macular degeneration
        See: https://www.snpedia.com/index.php/rs1061170
 
@@ -117,5 +112,6 @@ report and provides a summary of notable matches.
        See: https://www.snpedia.com/index.php/rs7571842
 
     MT rs2305160  GG:  CC  NPAS2      Circadian-associated increased breast/prostate cancer risk
+       See: https://www.snpedia.com/index.php/rs2305160
 
     ...
