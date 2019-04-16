@@ -16,14 +16,14 @@ import os
 import glob
 from foundMyFitness import FMF_NOTEWORTHY
 
-# Define CONSTANTS used in program
+# Define CONSTANTS used to control console character output color
 
-BLUE = '\033[94m'
-GREEN = '\033[92m'
-WARN = '\033[93m'       # Yellow color
-MATCH = '\033[91m'      # Red color
-ENDC = '\033[0m'        # Reset color
-BOLD = '\033[1m'
+BLUE = '\033[94m'       # Blue
+GREEN = '\033[92m'      # Green
+WARN = '\033[93m'       # Yellow
+MATCH = '\033[91m'      # Red
+ENDC = '\033[0m'        # Reset to default
+BOLD = '\033[1m'        # Bold
 UNDERLINE = '\033[4m'
 
 FILEPATTERN = 'genome_*.txt'   # Pattern of filenames for 23andMe data
@@ -68,12 +68,12 @@ def main():
         # print(sys.exc_info())
         sys.exit()
 
+    FILEPATH = os.path.abspath(myfiles[i-1])
+    print('\nOpening: {:20}'.format(os.path.relpath(FILEPATH)))
+
     # Read file contents into dictionary data structure and close file
     # Use ID as primary key with chromosome, position and genotype as
     # associated values - {rsid : [chromosome, position, genotype]}
-
-    FILEPATH = os.path.abspath(myfiles[i-1])
-    print('Opening: ' + FILEPATH)
 
     cnt = 0
     firstline = True
@@ -111,8 +111,8 @@ def main():
     print("Processing Chromosome: ", end='')
 
     for key, val in snps.items():
-        if val[0] == 'MT':              # Not interested in MT records
-            break
+        # if val[0] == 'MT':              # Not interested in MT records
+        #     break
 
         if key.startswith('rs'):         # rsid or internal?
             rs_cnt += 1
@@ -122,18 +122,18 @@ def main():
         if val[0] == 'X' or val[0] == 'Y':
             val[0] = 'XY'
 
-        if val[0] not in chromosome:
+        if val[0] not in chromosome:        # Chromosome
             chromosome.append(val[0])
             print("\n{:>2}:".format(val[0]), end='', flush=True)
 
         if not (rs_cnt + i_cnt) % 1000:
             print('.', end='', flush=True)
 
-        if val[1] != last_position:     # Position data
+        if val[1] != last_position:         # Position data
             position.append(val[1])
             last_position = val[1]
 
-        if val[2] not in genotype:      # Genotype
+        if val[2] not in genotype:          # Genotype
             genotype.append(val[2])
 
     print("\n\nDetected: {} chromosomes, {} positions, {} genotypes\n".\
@@ -200,10 +200,10 @@ def main():
                 color = False
 
             if color:
-                print('{:>2} {:10} {}{}:  {}  {}{:10} {}'.format(val[0], key, \
+                print('{:>2} {:10} {}{}:  {}  {}{:10} {}'.format(myval[0], key, \
                     color, myval[2], FMF_NOTEWORTHY[key][1], ENDC, \
                     FMF_NOTEWORTHY[key][0], FMF_NOTEWORTHY[key][2]))
-                print('   See: https://www.snpedia.com/index.php/{}'.format(key))
+                print('   See: https://www.snpedia.com/index.php/{}\n'.format(key))
 
 
 if __name__ == "__main__":

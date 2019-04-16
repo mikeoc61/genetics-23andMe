@@ -1,6 +1,15 @@
+###################################
 #
-# Noteworthy genetic variants per Found My Fitness reports
+# Sample noteworthy genetic variants collected from various Found My Fitness
+# reports. This data is compiled from various reports that have flagged these
+# varients as noteworthy. Your mileage may vary.
 #
+# Per Found My Fitness, these results are NOT FOR MEDICAL PURPOSES and are subject
+# to change in future software updates without notice. Raw data from genetic
+# providers is suitable only for research, educational, and informational use
+# and not for medical or other use.
+#
+###################################
 
 FMF_NOTEWORTHY = {
     'rs3184504' :['SH2B3',   'CT', 'Associated with a slight increased risk for celiac disease.'],
