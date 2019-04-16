@@ -6,7 +6,7 @@
 #
 # Note some SNPs have two variant combinations of interest. In that case, the
 # second variant SNP starts with a '*' so that it represents a unique key in
-# the disctionary structure. This '*' character will need to be stripped off
+# the dictionary structure. This '*' character will need to be stripped off
 # by the program doing the analysis.
 #
 # Also Note: 23andMe reports all SNPs from the plus orientation.
