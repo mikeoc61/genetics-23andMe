@@ -75,7 +75,7 @@ def main():
     # Use ID as primary key with chromosome, position and genotype as
     # associated values - {rsid : [chromosome, position, genotype]}
 
-    cnt = 0
+    snp_cnt = 0
     firstline = True
 
     with open(FILEPATH, 'r') as fp:
@@ -94,13 +94,13 @@ def main():
             else:                               # Load valid data into dict
                 id, values = items[0], items[1:]
                 snps[id] = values
-                cnt += 1
+                snp_cnt += 1
     fp.close()
-
-    print('\nImported total of {} SNPs...\n'.format(cnt))
 
     # First pass through raw data to identify unique chromosomes and genotype
     # information and number of External vs. Internal references.
+
+    print("\nProcessing {} SNPs sorted by Chromosome".format(snp_cnt), end='')\
 
     i_cnt, rs_cnt = 0, 0
     last_position = ''
@@ -108,11 +108,7 @@ def main():
     # Iterate through data to create lists and counts of unique elements
     # Note: Male data will have separate X and Y data so treat as XY pair
 
-    print("Processing Chromosome: ", end='')
-
     for key, val in snps.items():
-        # if val[0] == 'MT':              # Not interested in MT records
-        #     break
 
         if key.startswith('rs'):         # rsid or internal?
             rs_cnt += 1
@@ -120,7 +116,7 @@ def main():
             i_cnt += 1
 
         if val[0] == 'X' or val[0] == 'Y':
-            val[0] = 'XY'
+            val[0] = 'X?'
 
         if val[0] not in chromosome:        # Chromosome
             chromosome.append(val[0])
@@ -184,25 +180,40 @@ def main():
         print("Chromosome: {:2} = {:5}".format(item[0], item[1]))
 
     # Rescan SNPs for match with Found My Fitness data.
-    # Warn if SNP is one of concern and individual variant is '--'
+    # Display RED if RAW Variant and FoundMyFitness varient are identical
+    # Display BLUE if RAW and FoundMyFitness variants are complementary
+    # Warn if SNP is one of concern and reported raw data variant is '--'
 
     print('\nScanning Found My Fitness data for possible issues\n')
 
-    for key, myval in snps.items():
-        if key in FMF_NOTEWORTHY:
-            if (myval[2] != FMF_NOTEWORTHY[key][1]) and (myval[2] != '--'):
-                color = BLUE
-            elif (myval[2] != FMF_NOTEWORTHY[key][1]) and (myval[2] == '--'):
-                color = WARN
-            elif myval[2] == FMF_NOTEWORTHY[key][1]:
+    for key, val in FMF_NOTEWORTHY.items():
+        if key.startswith('*'):
+            key = key[1:]           # Strip away first character
+        if key in snps:
+            if val[1] == snps[key][2]:
                 color = MATCH
+            elif (val[1] == 'GG') and (snps[key][2] == 'CC'):
+                color = BLUE
+            elif (val[1] == 'CC') and (snps[key][2] == 'GG'):
+                color = BLUE
+            elif (val[1] == 'CT') and (snps[key][2] == 'AG'):
+                color = BLUE
+            elif (val[1] == 'AC') and (snps[key][2] == 'GT'):
+                color = BLUE
+            elif (val[1] == 'AG') and (snps[key][2] == 'CT'):
+                color = BLUE
+            elif (val[1] == 'TT') and (snps[key][2] == 'AA'):
+                color = BLUE
+            elif (val[1] == 'AA') and (snps[key][2] == 'TT'):
+                color = BLUE
+            elif (snps[key][2] == '--'):
+                color = WARN
             else:
                 color = False
 
             if color:
-                print('{:>2} {:10} {}{}:  {}  {}{:10} {}'.format(myval[0], key, \
-                    color, myval[2], FMF_NOTEWORTHY[key][1], ENDC, \
-                    FMF_NOTEWORTHY[key][0], FMF_NOTEWORTHY[key][2]))
+                print('{:>2} {:10} {}{}:{}  {}{:10} {}'.format(snps[key][0], key, \
+                    color, snps[key][2], val[1], ENDC, val[0], val[2]))
                 print('   See: https://www.snpedia.com/index.php/{}\n'.format(key))
 
 

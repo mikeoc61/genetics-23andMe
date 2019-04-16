@@ -18,11 +18,11 @@ report and provides a summary of notable matches.
 
 ## Sample Output
 
-    Opening: ~/Development/GitHub/genetics/data/genome_Michael_OConnor_v4_Full_20190408081640.txt
+    Opening: genome_Michael_OConnor_v4_Full_20190408081640.txt
 
     Imported total of 601886 SNPs...
 
-    Processing Chromosome:
+    Processing 601886 SNPs sorted by Chromosome
      1:..............................................
      2:..............................................
      3:.......................................
@@ -46,8 +46,9 @@ report and provides a summary of notable matches.
     21:........
     22:..........
     XY:.....................
+    MT:........
 
-    Detected: 23 chromosomes, 595015 positions, 20 genotypes
+    Detected: 24 chromosomes, 601886 positions, 20 genotypes
 
     rsID count: 553292, Internal ID count: 43511
 
@@ -99,15 +100,22 @@ report and provides a summary of notable matches.
     Chromosome: 19 = 13001
     Chromosome: 22 =  9098
     Chromosome: 21 =  8461
+    Chromosome: MT =  5083
 
     Scanning Found My Fitness data for possible issues
 
     MT rs1801131  GT:  AA  MTHFR      Risk for altered folate metabolism and hyperhomocysteinemia
        See: https://www.snpedia.com/index.php/rs1801131
+
     MT rs1801133  GG:  TT  MTHFR      Risk for altered folate metabolism and hyperhomocysteinemia
        See: https://www.snpedia.com/index.php/rs1801133
+
     MT rs1061170  CT:  CT  CFH        Normal lifespan; slightly increased risk for macular degeneration
        See: https://www.snpedia.com/index.php/rs1061170
+
     MT rs7571842  AA:  AA  SLC4A5     Increased risk for salt sensitivity of blood pressure
        See: https://www.snpedia.com/index.php/rs7571842
+
     MT rs2305160  GG:  CC  NPAS2      Circadian-associated increased breast/prostate cancer risk
+
+    ...
