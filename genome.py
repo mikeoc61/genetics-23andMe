@@ -233,8 +233,8 @@ def processSNPs(snps):
 def main():
 
     # Given a specific file name pattern, identify specific file of interest,
-    # validate it appears to be correct format and read contents into data
-    # dictionay structure and analyze
+    # validate it appears to be correct format, read contents into data
+    # dictionary structure and analyze
 
     PATTERN = 'genome_*.txt'
 
