@@ -100,7 +100,6 @@ def processSNPs(snps):
     MATCH = '\033[91m'      # Red
     ENDC = '\033[0m'        # Reset to default
     BOLD = '\033[1m'        # Bold
-    UNDERLINE = '\033[4m'
 
     # Define data structures to hold genomic data
 
