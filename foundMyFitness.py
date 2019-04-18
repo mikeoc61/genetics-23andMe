@@ -19,8 +19,7 @@
 #
 # Per Found My Fitness, these results are NOT FOR MEDICAL PURPOSES and are subject
 # to change. Raw data from genetic providers is suitable only for research,
-# educational providers is suitable only for research, educational, and
-# informational use and not for medical or other use.
+# educational, and informational use and not for medical or other uses.
 #
 ###################################
 
