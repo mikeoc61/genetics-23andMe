@@ -21,7 +21,8 @@ class GetSNPs:
     def __init__(self, pattern):
 
         '''When passed a filename pattern, identify desired file by prompting
-           user with a list of possibly choices.
+           user with a list of possible choices based on pattern match in
+           current user directory. 
         '''
 
         myfiles = glob.glob('./' + pattern)
